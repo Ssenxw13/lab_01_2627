@@ -65,14 +65,23 @@ When `quarto` compiles this document to HTML or PDF, the code is run, and the ou
 :::
 
 ```{r}
+#Load the library tidyverse
 library(tidyverse)
+#Read the penguins data and store it in penguins
 penguins <- read_csv("data/penguins.csv")
+#Show the first 6 rows of the data
 head(penguins)
+#Show the summary statistics for each column
 summary(penguins)
+#Plot body mass against flipper length, color by species
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
+#Draw each penguin as a point (scatter plot)
   geom_point() +
+#Use the minimal theme with a white background
   theme_minimal()
 ```
+
+As flipper length increases, body mass tends to increase. Gentoo penguins have longer flippers and are heavier than the other two species. Adelie and Chinstrap penguins overlap, so they are hard to tell apart using these two measurements.
 
 ### Tricks for Reproducibility
 
@@ -92,6 +101,17 @@ print("Hello world!")  # We can also add comments at the end of lines.
 - [ ] Add some interpretation of the plot (in `markdown`, not as comments), after the code block.
 - [ ] Create a second plot, below, that colours the dots by sex instead of by species.
 
+```{r}
+#Plot body mass against flipper length, colours by sex
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, colour = sex)) +
+#Draw each penguin as a point(scatter plot)
+  geom_point() +
+#Use the minimal theme with white background
+  theme_minimal()
+```
+
+When flipper length increases, body mass tends to increase. Male penguins have longer flippers and are heavier than female penguins. Male and female penguins overlap when flipper length is between 170 and 220mm and body mass is between 3000 and 5000g. These grey points mean the missing values.
+
 If you don't know how to do something in `R` you have a few options:
 
 - Check the documentation, e.g. by using `?ggplot` or similar.
@@ -101,6 +121,17 @@ If you don't know how to do something in `R` you have a few options:
 The next task asks you to *extend* what we have already done using new functionality of `ggplot`.
 
 - [ ] Create a third plot that uses colour for species and changes the *shape* of the points based on the sex.
+
+```{r}
+#Plot body mass against flipper length, colour by species, shape by sex
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, colour = species , shape = sex)) +
+#Draw each penguin as a point(scatter plot)
+  geom_point()
+```
+
+When flipper length increases, body mass tends to increase. The Gentoo penguins have longer flippers and have heavier body mass than Adelie penguins and Chinstrap. Within each species, male penguins (triangles point) are heavier than female penguins (circles points). 11 penguins with missing sex were removed from the plot.
+
+
 - [ ] Commit and push your solutions to GitHub with an informative message.
 - [ ] Make sure your changes are visible on GitHub.
 
