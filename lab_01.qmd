@@ -40,9 +40,9 @@ Sometimes there will be areas for you to edit. These will have _marked_ text tha
 Hi, my name is [Fangsen Xie]{.mark}.
 :::
 
-- [ ] Knit the document to check that the output looks okay.
-- [ ] Save, and push the output back up to GitHub. (Hint: see the instructions [here](https://soton-fds.github.io/github-tutorial.html))
-- [ ] Check that you can see the modified version in your personal GitHub repo.
+- [x] Knit the document to check that the output looks okay.
+- [x] Save, and push the output back up to GitHub. (Hint: see the instructions [here](https://soton-fds.github.io/github-tutorial.html))
+- [x] Check that you can see the modified version in your personal GitHub repo.
 
 ## Palmer Penguins in `R`
 
@@ -97,9 +97,9 @@ print("Hello world!")  # We can also add comments at the end of lines.
 
 ### Task 2 
 
-- [ ] Add comments before each line of code in the blocks above, explaining what is happening on each line.
-- [ ] Add some interpretation of the plot (in `markdown`, not as comments), after the code block.
-- [ ] Create a second plot, below, that colours the dots by sex instead of by species.
+- [x] Add comments before each line of code in the blocks above, explaining what is happening on each line.
+- [x] Add some interpretation of the plot (in `markdown`, not as comments), after the code block.
+- [x] Create a second plot, below, that colours the dots by sex instead of by species.
 
 ```{r}
 #Plot body mass against flipper length, colours by sex
@@ -120,7 +120,7 @@ If you don't know how to do something in `R` you have a few options:
 
 The next task asks you to *extend* what we have already done using new functionality of `ggplot`.
 
-- [ ] Create a third plot that uses colour for species and changes the *shape* of the points based on the sex.
+- [x] Create a third plot that uses colour for species and changes the *shape* of the points based on the sex.
 
 ```{r}
 #Plot body mass against flipper length, colour by species, shape by sex
@@ -132,8 +132,8 @@ ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, colour = species , 
 When flipper length increases, body mass tends to increase. The Gentoo penguins have longer flippers and have heavier body mass than Adelie penguins and Chinstrap. Within each species, male penguins (triangles point) are heavier than female penguins (circles points). 11 penguins with missing sex were removed from the plot.
 
 
-- [ ] Commit and push your solutions to GitHub with an informative message.
-- [ ] Make sure your changes are visible on GitHub.
+- [x] Commit and push your solutions to GitHub with an informative message.
+- [x] Make sure your changes are visible on GitHub.
 
 From now on I won't remind you to do this - you should get into the habit of doing it whenever you reach a natural point to commit!
 
@@ -141,6 +141,31 @@ From now on I won't remind you to do this - you should get into the habit of doi
 
 Produce plots to answer the following research questions:
 
-- [ ] On which island are we most likely to find which penguins?
-- [ ] What is the most useful measurement or measurements to distinguish different species of penguin?
-- [ ] Do the measurements given vary significantly with the penguin's genders?
+- [x] On which island are we most likely to find which penguins?
+
+```{r}
+ggplot(penguins,aes(x = island, fill = species)) +
+  geom_bar()
+```
+
+There are two types of penguins on Biscoe Island: Gentoo and Adelie, two types on Dream Island: Chinstrap and Adelie, only Adelie on Torgersen Island. Gentoo penguins only show up in Biscoe, Chinstrap penguins only show up in Dream, Adelie penguins show up on all three islands.
+
+
+- [x] What is the most useful measurement or measurements to distinguish different species of penguin?
+
+```{r}
+
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, colour = species)) +
+  geom_point()
+```
+
+Using bill length and bill depth together, the three species form separate groups. Adelie penguins have deeper and shorter bills, Chinstrap penguins have longer and deeper bills, Gentoo penguins have longer and shallower bills. Neither measurement alone can separate all three species.
+
+- [x] Do the measurements given vary significantly with the penguin's genders?
+
+```{r}
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, colour = sex, shape = species)) +
+  geom_point()
+```
+
+Within each species, male penguins tend to have longer and deeper bills than female penguins, although the two sexes overlap a little. Together with the earlier plots, this shows that the measurements vary with sex: male penguins tend to be larger than female penguins in all four measurements.
