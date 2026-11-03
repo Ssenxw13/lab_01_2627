@@ -1,0 +1,25 @@
+---
+title: "Week 1 Quiz"
+format: html
+editor: visual
+---
+
+```{r}
+library(tidyverse)
+penguins <- read_csv("data/penguins.csv")
+```
+
+```{r}
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, colour = island)) +
+  geom_point() +
+  theme_minimal()
+```
+
+As flipper length increases, body mass tends to increase. Most penguins on Biscoe Island have longer flippers and are heavier than penguins on the other two islands. Penguins on Dream and Torgersen islands overlap, with flipper lengths between about 170 and 210 mm and body masses between about 2700 and 4800 g.
+
+```{r}
+ggplot(penguins, aes(x = island, fill = sex)) +
+  geom_bar()
+```
+
+The grey part of each bar shows penguins whose sex is missing (NA), not a third sex.
